@@ -65,7 +65,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
               fetchPriority="high"
               className="object-cover"
               sizes="100vw"
-              quality={80}
+              quality={75}
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMxMjUyMCIvPjwvc3ZnPg=="
               placeholder="blur"
             />
@@ -83,7 +83,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
             <p className="text-primary font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-base">
               Welcome to
             </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight md:whitespace-nowrap">
               {restaurant.name}
             </h1>
             <p className="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
