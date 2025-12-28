@@ -162,13 +162,13 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="absolute -inset-4 border border-primary/20 z-0 translate-x-4 translate-y-4" />
+              <div className="absolute -inset-4 border-2 border-primary/20 z-0 translate-x-4 translate-y-4" />
               {restaurant.photos && restaurant.photos.length > 1 && photoUrls['photo_1'] ? (
                 <Image 
                   src={photoUrls['photo_1']} 
                   alt="Restaurant Interior" 
                   width={400}
-                  height={500}
+                  height={250}
                   className="relative z-10 w-full shadow-2xl"
                 />
               ) : restaurant.photos && restaurant.photos.length > 0 && photoUrls['photo_0'] ? (
@@ -176,11 +176,11 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                   src={photoUrls['photo_0']} 
                   alt="Restaurant Interior" 
                   width={400}
-                  height={500}
+                  height={250}
                   className="relative z-10 w-full shadow-2xl"
                 />
               ) : (
-                <div className="relative z-10 w-full aspect-4/5 bg-linear-to-br from-gray-800 to-gray-900 shadow-2xl" />
+                <div className="relative z-10 w-full aspect-4/3 bg-linear-to-br from-gray-800 to-gray-900 shadow-2xl" />
               )}
             </motion.div>
           </div>
@@ -347,17 +347,15 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                 </CardContent>
               </Card>
 
-              {/* Map Embed */}
+              {/* Map Embed - Pinned Location */}
               <div className="w-full h-75 bg-secondary/50 rounded-lg overflow-hidden relative">
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  marginHeight={0} 
-                  marginWidth={0} 
-                  src={`https://maps.google.com/maps?q=${encodeURIComponent(restaurant.formatted_address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                  src={`https://maps.google.com/maps?q=loc:${restaurant.geometry.location.lat},${restaurant.geometry.location.lng}&t=&z=16&ie=UTF8&iwloc=B&output=embed`}
                   className="filter grayscale contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  title={`Map pinned to ${restaurant.name}`}
+                  loading="lazy"
                 ></iframe>
               </div>
             </div>

@@ -5,7 +5,6 @@ import { GooglePlacesResponseSchema, PlaceDetails } from '@/lib/types';
 const CACHE_DURATION = parseInt(process.env.NEXT_REVALIDATE_TIME || '3600', 10);
 const placeId = process.env.GOOGLE_MAPS_PLACE_ID;
 const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-console.log({placeId, apiKey});
 
 if (!placeId) {
   throw new Error('GOOGLE_MAPS_PLACE_ID is not set in environment variables');
