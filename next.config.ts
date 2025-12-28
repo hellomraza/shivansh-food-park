@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
   },
   compress: true,
   productionBrowserSourceMaps: true,
+  // Modern browsers only - no legacy transpilation
+  // Babel & TypeScript use .browserslistrc for target configuration
   experimental: {
     optimizePackageImports: ['@radix-ui/*', 'lucide-react'],
   },

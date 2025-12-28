@@ -1,0 +1,24 @@
+# Modern browsers only - no legacy support
+# This reduces polyfills and transpilation overhead
+
+# Chrome/Edge: last 2 major versions
+last 2 chrome versions
+last 2 edge versions
+
+# Firefox: last 2 major versions  
+last 2 firefox versions
+
+# Safari: last 2 major versions
+last 2 safari versions
+
+# Excludes older browsers
+not dead
+not ie 11
+not op_mini all
+not <0.25%
+
+# Minimum versions (all support ES2020)
+chrome >= 80
+firefox >= 75
+safari >= 13.1
+edge >= 80

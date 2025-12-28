@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "sourceMap": true,
     "removeComments": false,
+    "useDefineForClassFields": true,
     "plugins": [
       {
         "name": "next"
