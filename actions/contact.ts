@@ -50,18 +50,3 @@ export async function submitContact(data: unknown) {
     };
   }
 }
-
-/**
- * Get all contact submissions (admin only - development only)
- */
-export async function getContactSubmissions() {
-  return contactSubmissions;
-}
-
-/**
- * Clear contact submissions (development only)
- */
-export async function clearContactSubmissions() {
-  contactSubmissions.length = 0;
-  return { success: true };
-}
