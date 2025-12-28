@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Providers } from "../components/providers";
 import "./globals.css";
-import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Shivansh Food Park - Premium Dining Experience",

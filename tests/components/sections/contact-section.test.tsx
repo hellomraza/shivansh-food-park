@@ -1,6 +1,6 @@
 import { ContactSection } from '@/components/sections/contact-section';
-import type { PlaceDetails } from '@/lib/types';
 import { render, screen } from '@testing-library/react';
+import type { PlaceDetails } from 'lib/types';
 
 const mockRestaurant: PlaceDetails = {
   name: 'Shivansh Food Park',

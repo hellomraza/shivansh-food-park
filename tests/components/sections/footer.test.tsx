@@ -1,6 +1,6 @@
 import { Footer } from '@/components/sections/footer';
-import type { PlaceDetails } from '@/lib/types';
 import { render, screen } from '@testing-library/react';
+import type { PlaceDetails } from 'lib/types';
 
 const mockRestaurant: PlaceDetails = {
   name: 'Shivansh Food Park',

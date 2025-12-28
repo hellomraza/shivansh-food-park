@@ -1,6 +1,6 @@
 import { GallerySection } from '@/components/sections/gallery-section';
-import type { Photo } from '@/lib/types';
 import { render, screen } from '@testing-library/react';
+import type { Photo } from 'lib/types';
 
 const mockPhotos: Photo[] = [
   {

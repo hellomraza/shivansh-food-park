@@ -1,4 +1,4 @@
-import { GooglePlacesResponseSchema, PlaceDetailsSchema } from '@/lib/types';
+import { GooglePlacesResponseSchema, PlaceDetailsSchema } from 'lib/types';
 
 describe('Zod Schemas', () => {
   describe('PlaceDetailsSchema', () => {

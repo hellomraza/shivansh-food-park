@@ -1,6 +1,6 @@
 import { ReviewsSection } from '@/components/sections/reviews-section';
-import type { Review } from '@/lib/types';
 import { render, screen } from '@testing-library/react';
+import type { Review } from 'lib/types';
 
 const mockReviews: Review[] = [
   {

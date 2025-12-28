@@ -1,14 +1,14 @@
 import {
-    formatAddress,
-    formatOpeningHours,
-    formatPhoneNumber,
-    getDirectionsUrl,
-    getPhoneUrl,
-    getRelativeTime,
-    getStarRating,
-    getWhatsAppUrl,
-    isOpen,
-} from '@/lib/formatters';
+  formatAddress,
+  formatOpeningHours,
+  formatPhoneNumber,
+  getDirectionsUrl,
+  getPhoneUrl,
+  getRelativeTime,
+  getStarRating,
+  getWhatsAppUrl,
+  isOpen,
+} from 'lib/formatters';
 
 describe('formatters', () => {
   describe('formatOpeningHours', () => {

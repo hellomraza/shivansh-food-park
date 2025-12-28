@@ -1,5 +1,5 @@
-import { getRestaurantDetails } from '@/actions/google';
 import { HomeServer } from '@/components/home-server';
+import { getRestaurantDetails } from 'actions/google';
 
 export const revalidate = 3600; // ISR: revalidate every hour
 

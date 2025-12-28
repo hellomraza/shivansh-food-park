@@ -1,4 +1,4 @@
-import { clearCache, getPhotoUrl, getRestaurantDetails } from '@/actions/google';
+import { clearCache, getPhotoUrl, getRestaurantDetails } from 'actions/google';
 
 // Mock fetch
 global.fetch = jest.fn();
