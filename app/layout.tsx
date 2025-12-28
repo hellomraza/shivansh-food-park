@@ -43,6 +43,13 @@ export default function RootLayout({
         {/* DNS Prefetch for optional resources to reduce lookup time */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         
+        {/* Critical CSS for above-the-fold content - reduces First Paint */}
+        <style>{`
+          html { scroll-behavior: smooth; }
+          body { background-color: #0a0a0a; color: #ededed; }
+          section { overflow: hidden; }
+        `}</style>
+        
         {/* Defer non-critical resources parsing */}
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       </head>

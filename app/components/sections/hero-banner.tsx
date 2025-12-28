@@ -18,16 +18,11 @@ interface HeroBannerProps {
 
 export function HeroBanner({ restaurant, heroImageUrl }: HeroBannerProps) {
   const [imageError, setImageError] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      {mounted && !imageError && heroImageUrl ? (
+      {/* Background Image - Renders immediately, no mounting delay */}
+      {!imageError && heroImageUrl ? (
         <Image
           src={heroImageUrl}
           alt={restaurant.name}
@@ -35,12 +30,13 @@ export function HeroBanner({ restaurant, heroImageUrl }: HeroBannerProps) {
           priority
           onError={() => setImageError(true)}
           className="absolute inset-0 w-full h-full object-cover"
+          sizes="100vw"
+          quality={85}
         />
-      ) : null}
-      {/* Fallback gradient */}
-      {mounted && imageError && (
+      ) : (
         <div className="absolute inset-0 bg-linear-to-r from-amber-900 to-amber-700" />
       )}
+      {/* Fallback gradient - shown if image fails to load */}
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent" />
 

@@ -62,8 +62,12 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
               alt={`${restaurant.name} Interior`}
               fill
               priority
-              className="object-cover scale-105"
-              style={{ animation: 'pulse 20s infinite alternate' }}
+              fetchPriority="high"
+              className="object-cover"
+              sizes="100vw"
+              quality={80}
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMxMjUyMCIvPjwvc3ZnPg=="
+              placeholder="blur"
             />
           ) : (
             <div className="w-full h-full bg-linear-to-r from-amber-900 to-amber-700" />
