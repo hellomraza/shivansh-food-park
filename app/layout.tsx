@@ -11,6 +11,11 @@ export const metadata: Metadata = {
     description: "Premium dining experience in Dhamtari",
     type: "website",
   },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -27,9 +32,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Preload critical fonts to avoid layout shift */}
+        {/* Optimize critical request chains */}
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#0a0a0a" />
+        
+        {/* Preconnect to critical Google APIs - reduces DNS lookup + TCP handshake */}
+        <link rel="preconnect" href="https://lh3.googleusercontent.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
+        
+        {/* DNS Prefetch for optional resources to reduce lookup time */}
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        
+        {/* Defer non-critical resources parsing */}
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       </head>
       <body className="bg-background text-foreground">
         <Providers>
