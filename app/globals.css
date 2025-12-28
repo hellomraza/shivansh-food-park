@@ -1,13 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+/* Using system fonts to avoid third-party cookie tracking from Google Fonts */
+@layer base {
+  :root {
+    --font-serif: 'Georgia', 'Garamond', serif;
+    --font-sans: 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', sans-serif;
+    --font-mono: 'Courier New', monospace;
+  }
+}
 
 @import "tailwindcss";
 
 @theme {
-  /* Fonts */
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Courier New', monospace;
-
   /* Colors - Dark Luxury Theme */
   --color-background: hsl(0 0% 4%);        /* #0a0a0a - Deep Black */
   --color-foreground: hsl(0 0% 93%);       /* #ededed - Off White */
@@ -68,13 +70,6 @@
   --radius-lg: 0.5625rem;
   --radius-md: 0.375rem;
   --radius-sm: 0.1875rem;
-}
-
-:root {
-  /* For backwards compatibility if needed */
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Courier New', monospace;
 }
 
 @layer base {

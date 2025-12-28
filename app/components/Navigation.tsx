@@ -45,14 +45,16 @@ export function Navigation() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors uppercase tracking-widest text-[11px]"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors uppercase tracking-widest text-[11px] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1"
+              aria-label={`Navigate to ${link.name} section`}
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="px-6 py-2 bg-primary text-primary-foreground font-semibold rounded-sm hover:bg-primary/90 transition-colors text-sm"
+            className="px-6 py-2 bg-primary text-primary-foreground font-semibold rounded-sm hover:bg-primary/90 transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-foreground focus:ring-offset-primary"
+            aria-label="Book a table at Shivansh Food Park"
           >
             Book a Table
           </a>
