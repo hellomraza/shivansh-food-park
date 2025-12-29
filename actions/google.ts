@@ -83,22 +83,3 @@ export async function getRestaurantDetails(): Promise<PlaceDetails> {
     throw new Error('Failed to fetch restaurant details. Please try again later.');
   }
 }
-
-/**
- * Get a specific photo URL from Google Places API (async version)
- */
-export async function getPhotoUrl(photoReference: string, maxWidth: number = 800): Promise<string> {
-  if (!apiKey) {
-    throw new Error('API key not configured');
-  }
-  
-  return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photo_reference=${photoReference}&key=${apiKey}`;
-}
-
-/**
- * Clear cache (useful for testing or manual refresh)
- */
-export async function clearCache(): Promise<void> {
-  cache.clear();
-  console.log('[Cache] Cleared');
-}
