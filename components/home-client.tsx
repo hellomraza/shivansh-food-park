@@ -377,6 +377,11 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
           <p className="text-white/20 text-xs">
             © {new Date().getFullYear()} {restaurant.name}. All rights reserved. Designed with precision.
           </p>
+          <p className="text-white/60 text-sm mt-4 font-medium">
+            <a href="https://thetimestack.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white transition-colors duration-300 font-semibold">
+              Created by TheTimeStack
+            </a>
+          </p>
         </div>
       </footer>
     </div>
