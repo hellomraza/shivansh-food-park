@@ -1,0 +1,100 @@
+{
+  "common": {
+    "brandName": "Shivansh Food Park",
+    "buttons": {
+      "primary": "Book a Table",
+      "secondary": "View on Map",
+      "submit": "Send Message",
+      "loading": "Sending..."
+    },
+    "labels": {
+      "open": "Open",
+      "closed": "Closed",
+      "location": "Location",
+      "phone": "Phone",
+      "hours": "Opening Hours"
+    }
+  },
+  "navigation": {
+    "links": [
+      {
+        "name": "About",
+        "href": "#about"
+      },
+      {
+        "name": "Gallery",
+        "href": "#gallery"
+      },
+      {
+        "name": "Reviews",
+        "href": "#reviews"
+      },
+      {
+        "name": "Location",
+        "href": "#location"
+      },
+      {
+        "name": "Contact",
+        "href": "#contact"
+      }
+    ]
+  },
+  "sections": {
+    "hero": {
+      "welcome": "Welcome to",
+      "tagline": "Experience the art of culinary excellence in an atmosphere of refined elegance. Where every dish tells a story of tradition and innovation.",
+      "imageAlt": "Restaurant Interior"
+    },
+    "about": {
+      "title": "A Legacy of Taste",
+      "subtitle": "Our Story",
+      "description1": "Located at {address}, Shivansh Food Park has established itself as a beacon of culinary delight. With a {rating} star rating from over {reviews} satisfied guests, we pride ourselves on delivering an unforgettable dining experience.",
+      "description2": "Our chefs meticulously select the finest ingredients to craft dishes that are both visually stunning and exceptionally delicious. Whether you're joining us for a casual lunch or a celebratory dinner, expect nothing less than perfection.",
+      "stats": {
+        "rating": "Stars Rating",
+        "reviews": "Reviews",
+        "status": "Status Now"
+      }
+    },
+    "gallery": {
+      "title": "Culinary Masterpieces",
+      "subtitle": "Our Gallery",
+      "empty": "No photos available at the moment.",
+      "imageAlt": "Restaurant photo {index}"
+    },
+    "reviews": {
+      "title": "Guest Experiences",
+      "subtitle": "Testimonials"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "Contact Us",
+      "description": "Have a question or want to make a reservation? Send us a message and we'll get back to you promptly.",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message"
+      },
+      "placeholders": {
+        "name": "Your Name",
+        "email": "your@email.com",
+        "message": "How can we help you?"
+      }
+    }
+  },
+  "footer": {
+    "copyrightText": "© {year} {restaurant}. All rights reserved. Designed with precision.",
+    "createdBy": "Created by TheTimeStack",
+    "links": {
+      "about": "About",
+      "gallery": "Gallery",
+      "reviews": "Reviews",
+      "contact": "Contact"
+    }
+  },
+  "messages": {
+    "error": "Unable to load restaurant details. Please try again later.",
+    "errorConfig": "Make sure your Google Maps API key is configured in .env.local",
+    "mapTitle": "Map pinned to {restaurant}"
+  }
+}

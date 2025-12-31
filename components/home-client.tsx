@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useContactSubmission } from '@/hooks/use-restaurant';
+import { getContent, interpolateText } from '@/lib/useContent';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 import { insertContactSchema, type InsertContact } from 'lib/schema';
@@ -30,6 +31,7 @@ interface PhotoUrl {
 export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
   const contactMutation = useContactSubmission();
   const [photoUrls] = useState<PhotoUrl>(initialPhotoUrls);
+  const content = getContent();
 
   const form = useForm({
     resolver: zodResolver(insertContactSchema),
@@ -81,14 +83,13 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
             transition={{ duration: 0.8 }}
           >
             <p className="text-primary font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-base">
-              Welcome to
+              {content.sections.hero.welcome}
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight md:whitespace-nowrap">
               {restaurant.name}
             </h1>
             <p className="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-              Experience the art of culinary excellence in an atmosphere of refined elegance.
-              Where every dish tells a story of tradition and innovation.
+              {content.sections.hero.tagline}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -96,7 +97,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                 className="bg-primary text-black hover:bg-white hover:text-black transition-all duration-300 font-semibold px-8 py-6 text-lg"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Reserve a Table
+                {content.common.buttons.primary}
               </Button>
               <Button 
                 variant="outline" 
@@ -105,7 +106,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                 asChild
               >
                 <a href={restaurant.url} target="_blank" rel="noopener noreferrer">
-                  View on Map
+                  {content.common.buttons.secondary}
                 </a>
               </Button>
             </div>
@@ -124,33 +125,33 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
               transition={{ duration: 0.8 }}
             >
               <SectionHeading 
-                title="A Legacy of Taste" 
-                subtitle="Our Story" 
+                title={content.sections.about.title} 
+                subtitle={content.sections.about.subtitle} 
                 alignment="left"
               />
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Located at {restaurant.formatted_address}, Shivansh Food Park has established itself as a beacon of culinary delight. 
-                With a {restaurant.rating} star rating from over {restaurant.user_ratings_total} satisfied guests, 
-                we pride ourselves on delivering an unforgettable dining experience.
+                {interpolateText(content.sections.about.description1, {
+                  address: restaurant.formatted_address,
+                  rating: restaurant.rating,
+                  reviews: restaurant.user_ratings_total,
+                })}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Our chefs meticulously select the finest ingredients to craft dishes that are both visually stunning 
-                and exceptionally delicious. Whether you&apos;re joining us for a casual lunch or a celebratory dinner, 
-                expect nothing less than perfection.
+                {content.sections.about.description2}
               </p>
               
               <div className="flex gap-8 border-t border-border pt-8">
                 <div>
                   <h4 className="text-primary text-3xl font-serif font-bold mb-1">{restaurant.rating}</h4>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground">Stars Rating</p>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground">{content.sections.about.stats.rating}</p>
                 </div>
                 <div>
                   <h4 className="text-primary text-3xl font-serif font-bold mb-1">{restaurant.user_ratings_total}+</h4>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground">Reviews</p>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground">{content.sections.about.stats.reviews}</p>
                 </div>
                 <div>
-                  <h4 className="text-primary text-3xl font-serif font-bold mb-1">{restaurant.opening_hours?.open_now ? 'Open' : 'Closed'}</h4>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground">Status Now</p>
+                  <h4 className="text-primary text-3xl font-serif font-bold mb-1">{restaurant.opening_hours?.open_now ? content.common.labels.open : content.common.labels.closed}</h4>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground">{content.sections.about.stats.status}</p>
                 </div>
               </div>
             </motion.div>
@@ -190,7 +191,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
       {/* Gallery Section */}
       <section id="gallery" className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <SectionHeading title="Culinary Masterpieces" subtitle="Our Gallery" />
+          <SectionHeading title={content.sections.gallery.title} subtitle={content.sections.gallery.subtitle} />
           
           {restaurant.photos && restaurant.photos.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -222,7 +223,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No photos available at the moment.</p>
+              <p className="text-muted-foreground">{content.sections.gallery.empty}</p>
             </div>
           )}
         </div>
@@ -231,7 +232,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
       {/* Reviews Section */}
       <section id="reviews" className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <SectionHeading title="Guest Experiences" subtitle="Testimonials" />
+          <SectionHeading title={content.sections.reviews.title} subtitle={content.sections.reviews.subtitle} />
           <ReviewCarousel reviews={restaurant.reviews} />
         </div>
       </section>
@@ -243,9 +244,9 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
             
             {/* Contact Form */}
             <div>
-              <SectionHeading title="Get in Touch" subtitle="Contact Us" alignment="left" />
+              <SectionHeading title={content.sections.contact.title} subtitle={content.sections.contact.subtitle} alignment="left" />
               <p className="text-muted-foreground mb-8">
-                Have a question or want to make a reservation? Send us a message and we&apos;ll get back to you promptly.
+                {content.sections.contact.description}
               </p>
 
               <Form {...form}>
@@ -255,9 +256,9 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel>{content.sections.contact.form.name}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your Name" {...field} className="bg-background border-border focus:border-primary/50" />
+                          <Input placeholder={content.sections.contact.placeholders.name} {...field} className="bg-background border-border focus:border-primary/50" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -268,9 +269,9 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>{content.sections.contact.form.email}</FormLabel>
                         <FormControl>
-                          <Input placeholder="your@email.com" {...field} className="bg-background border-border focus:border-primary/50" />
+                          <Input placeholder={content.sections.contact.placeholders.email} {...field} className="bg-background border-border focus:border-primary/50" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -281,9 +282,9 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel>{content.sections.contact.form.message}</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="How can we help you?" className="min-h-30 bg-background border-border focus:border-primary/50" {...field} />
+                          <Textarea placeholder={content.sections.contact.placeholders.message} className="min-h-30 bg-background border-border focus:border-primary/50" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -296,10 +297,10 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                   >
                     {contactMutation.isPending ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> {content.common.buttons.loading}
                       </>
                     ) : (
-                      'Send Message'
+                      content.common.buttons.submit
                     )}
                   </Button>
                 </form>
@@ -314,7 +315,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
                       <MapPin />
                     </div>
-                    <h3 className="font-serif font-bold text-lg mb-2">Location</h3>
+                    <h3 className="font-serif font-bold text-lg mb-2">{content.common.labels.location}</h3>
                     <p className="text-muted-foreground text-sm">{restaurant.formatted_address}</p>
                   </CardContent>
                 </Card>
@@ -324,7 +325,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
                       <Phone />
                     </div>
-                    <h3 className="font-serif font-bold text-lg mb-2">Phone</h3>
+                    <h3 className="font-serif font-bold text-lg mb-2">{content.common.labels.phone}</h3>
                     <p className="text-muted-foreground text-sm">{restaurant.formatted_phone_number}</p>
                   </CardContent>
                 </Card>
@@ -334,7 +335,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <Clock className="text-primary" />
-                    <h3 className="font-serif font-bold text-lg">Opening Hours</h3>
+                    <h3 className="font-serif font-bold text-lg">{content.common.labels.hours}</h3>
                   </div>
                   <ul className="space-y-2">
                     {restaurant.opening_hours?.weekday_text?.map((hours, idx) => (
@@ -354,7 +355,7 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
                   height="100%" 
                   src={`https://maps.google.com/maps?q=loc:${restaurant.geometry.location.lat},${restaurant.geometry.location.lng}&t=&z=16&ie=UTF8&iwloc=B&output=embed`}
                   className="filter grayscale contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                  title={`Map pinned to ${restaurant.name}`}
+                  title={interpolateText(content.messages.mapTitle, { restaurant: restaurant.name })}
                   loading="lazy"
                 ></iframe>
               </div>
@@ -369,17 +370,20 @@ export function HomeClient({ restaurant, initialPhotoUrls }: HomeClientProps) {
             {restaurant.name}
           </h2>
           <div className="flex justify-center gap-6 mb-8 text-sm text-muted-foreground">
-            <a href="#about" className="hover:text-primary transition-colors">About</a>
-            <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
-            <a href="#reviews" className="hover:text-primary transition-colors">Reviews</a>
-            <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+            <a href="#about" className="hover:text-primary transition-colors">{content.footer.links.about}</a>
+            <a href="#gallery" className="hover:text-primary transition-colors">{content.footer.links.gallery}</a>
+            <a href="#reviews" className="hover:text-primary transition-colors">{content.footer.links.reviews}</a>
+            <a href="#contact" className="hover:text-primary transition-colors">{content.footer.links.contact}</a>
           </div>
           <p className="text-white/20 text-xs">
-            © {new Date().getFullYear()} {restaurant.name}. All rights reserved. Designed with precision.
+            {interpolateText(content.footer.copyrightText, {
+              year: new Date().getFullYear(),
+              restaurant: restaurant.name,
+            })}
           </p>
           <p className="text-white/60 text-sm mt-4 font-medium">
             <a href="https://thetimestack.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white transition-colors duration-300 font-semibold">
-              Created by TheTimeStack
+              {content.footer.createdBy}
             </a>
           </p>
         </div>

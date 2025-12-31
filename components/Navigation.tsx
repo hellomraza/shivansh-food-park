@@ -1,5 +1,6 @@
 'use client';
 
+import { getContent } from '@/lib/useContent';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { useEffect, useState } from 'react';
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const content = getContent();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -18,13 +20,7 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Reviews', href: '#reviews' },
-    { name: 'Location', href: '#location' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const navLinks = content.navigation.links;
 
   return (
     <nav
@@ -36,7 +32,7 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="text-2xl font-serif font-bold text-primary tracking-tighter hover:text-primary/80 transition-colors">
-          Shivansh Food Park
+          {content.common.brandName}
         </Link>
 
         {/* Desktop Nav */}
@@ -54,9 +50,9 @@ export function Navigation() {
           <a
             href="#contact"
             className="px-6 py-2 bg-primary text-primary-foreground font-semibold rounded-sm hover:bg-primary/90 transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-foreground focus:ring-offset-primary"
-            aria-label="Book a table at Shivansh Food Park"
+            aria-label={`Book a table at ${content.common.brandName}`}
           >
-            Book a Table
+            {content.common.buttons.primary}
           </a>
         </div>
 
