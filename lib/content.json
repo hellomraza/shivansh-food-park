@@ -1,4 +1,33 @@
 {
+  "theme": {
+    "colors": {
+      "primary": "#d4af37",
+      "primaryForeground": "#000000",
+      "secondary": "rgba(0, 0, 0, 0.03)",
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "card": "#111111",
+      "border": "rgba(255, 255, 255, 0.1)",
+      "mutedForeground": "rgba(255, 255, 255, 0.6)"
+    },
+    "typography": {
+      "fontSerif": "'Georgia', serif",
+      "fontSans": "'Inter', sans-serif",
+      "heroHeadingSize": "clamp(2.5rem, 8vw, 8rem)",
+      "sectionHeadingSize": "clamp(1.875rem, 5vw, 3rem)",
+      "baseLineHeight": "1.6"
+    },
+    "spacing": {
+      "sectionPadding": "6rem",
+      "containerPadding": "1rem",
+      "cardRadius": "0.125rem",
+      "gapBase": "1rem"
+    },
+    "animations": {
+      "transitionDuration": "300ms",
+      "hoverOpacity": "0.9"
+    }
+  },
   "common": {
     "brandName": "Shivansh Food Park",
     "buttons": {
